@@ -14,22 +14,22 @@ This project uses **Retrieval-Augmented Generation (RAG)** to ensure accurate re
 
 ## ✨ Features
 
-* 📄 **Smart PDF Processing**
+- 📄 **Smart PDF Processing**
   Upload documents and automatically extract, chunk, and index text using FAISS and embeddings.
 
-* 💬 **Interactive AI Chat**
+- 💬 **Interactive AI Chat**
   Ask questions about your documents and get precise answers.
 
-* 📝 **Instant Summarization**
+- 📝 **Instant Summarization**
   Generate concise summaries of large documents instantly.
 
-* 🎯 **Automated Quizzes**
+- 🎯 **Automated Quizzes**
   Create multiple-choice quizzes from your study material.
 
-* 📈 **Study Dashboard**
+- 📈 **Study Dashboard**
   Track progress, history, and performance with visual insights.
 
-* 🔐 **Secure Authentication**
+- 🔐 **Secure Authentication**
   JWT-based authentication with optional Google OAuth login.
 
 ---
@@ -38,44 +38,30 @@ This project uses **Retrieval-Augmented Generation (RAG)** to ensure accurate re
 
 ### Frontend
 
-* Next.js (React Framework)
-* Tailwind CSS
-* Framer Motion
-* Lucide Icons
+- Next.js (React Framework)
+- Tailwind CSS
+- Framer Motion
+- Lucide Icons
 
 ### Backend
 
-* FastAPI (Python)
-* MongoDB
-* FAISS (Vector Database)
-* LangChain & Groq (LLM orchestration)
-* Sentence-Transformers (Embeddings)
+- FastAPI (Python)
+- MongoDB
+- FAISS (Vector Database)
+- LangChain & Groq (LLM orchestration)
+- Sentence-Transformers (Embeddings)
 
 ---
 
 ## 📁 Project Structure
 
-```
+````
 ai-study-assistant/
 │
 ├── frontend/        # Next.js frontend
 ├── backend/         # FastAPI backend
 ├── docker-compose.yml
 └── README.md
-```
-
----
-
-## 🔐 Environment Variables
-
-Create a `.env` file inside the `backend/` folder:
-
-```
-GROQ_API_KEY=your_api_key_here
-MONGO_URI=your_mongodb_connection_string
-JWT_SECRET=your_secret_key
-```
-
 ---
 
 ## 💻 Getting Started
@@ -93,7 +79,7 @@ JWT_SECRET=your_secret_key
 
 ```bash
 docker-compose up -d --build
-```
+````
 
 👉 Application will run at:
 Frontend: http://localhost:3000
@@ -119,18 +105,18 @@ npm run dev
 
 ## 🌐 Access the Application
 
-* Frontend Dashboard: http://localhost:3000
-* Backend API: http://localhost:8000
-* API Docs (Swagger): http://localhost:8000/docs
+- Frontend Dashboard: http://localhost:3000
+- Backend API: http://localhost:8000
+- API Docs (Swagger): http://localhost:8000/docs
 
 ---
 
 ## 📡 API Endpoints (Sample)
 
-* `POST /upload` → Upload PDF
-* `POST /chat` → Ask questions
-* `POST /quiz` → Generate quiz
-* `GET /history` → Fetch user activity
+- `POST /upload` → Upload PDF
+- `POST /chat` → Ask questions
+- `POST /quiz` → Generate quiz
+- `GET /history` → Fetch user activity
 
 ---
 
@@ -142,10 +128,9 @@ Traditional studying is time-consuming and often inefficient. This project aims 
 
 ## 🚀 Future Improvements
 
-* Voice-based interaction
-* Multi-language support
-* Mobile application
-* Advanced analytics dashboard
+- Voice-based interaction
+- Mobile application
+- Advanced analytics dashboard
 
 ---
 
@@ -156,15 +141,9 @@ Feel free to fork the repository and submit a pull request.
 
 ---
 
-## 📄 License
-
-This project is licensed under the MIT License.
-
----
-
 ## 🙌 Acknowledgements
 
-* HuggingFace
-* LangChain
-* Groq
-* Open-source community
+- HuggingFace
+- LangChain
+- Groq
+- Open-source community
