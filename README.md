@@ -1,70 +1,170 @@
 # 🚀 AI Study Assistant
 
-**Supercharge your learning with an AI-powered study dashboard that instantly turns your PDFs into interactive chats, summaries, and quizzes.**
-
-The AI Study Assistant is a full-stack application designed to accelerate the learning process. By combining the power of modern Large Language Models (LLMs) with intuitive user interfaces, students and professionals can upload their learning materials and immediately engage with them. 
+Supercharge your learning with an AI-powered study dashboard that transforms PDFs into interactive chats, summaries, and quizzes.
 
 ---
 
-## ✨ Key Features
+## 📌 Overview
 
-- 📄 **Smart PDF Processing:** Upload any study material or document. The system automatically extracts, chunks, and indexes the text using FAISS and HuggingFace embeddings for lightning-fast retrieval.
-- 💬 **Interactive AI Chat:** Ask questions directly about your uploaded documents. The RAG (Retrieval-Augmented Generation) pipeline ensures the AI gives accurate answers based strictly on your notes.
-- 📝 **Instant Summarization:** Don't have time to read a 50-page document? Generate a concise, high-level summary with a single click.
-- 🎯 **Automated Quizzes:** Test your knowledge. The AI automatically generates multiple-choice quizzes based on the contents of your documents to solidify your learning.
-- 📈 **Study Dashboard & History:** Track your progress, review past quizzes, and monitor your study intensity over the week with beautiful charts and subject mastery metrics.
-- 🔐 **Secure Authentication:** Features secure JWT-based login, user registration, and Google OAuth integration to keep your study data private and persistent.
+The **AI Study Assistant** is a full-stack application designed to make studying faster and smarter. It allows users to upload documents and interact with them using AI-powered features like chat, summarization, and quiz generation.
+
+This project uses **Retrieval-Augmented Generation (RAG)** to ensure accurate responses based strictly on user-provided content.
 
 ---
 
-## 🛠️ Technology Stack
+## ✨ Features
 
-**Frontend:**
-- [Next.js](https://nextjs.org/) (React Framework)
-- Tailwind CSS (Styling)
-- Lucide Icons & Framer Motion (Animations)
+* 📄 **Smart PDF Processing**
+  Upload documents and automatically extract, chunk, and index text using FAISS and embeddings.
 
-**Backend:**
-- [FastAPI](https://fastapi.tiangolo.com/) (High-performance Python web framework)
-- MongoDB (Database for users, history, and chat logs)
-- FAISS (Vector Database for document search)
-- LangChain & Groq (LLM Orchestration and ultra-fast inference)
-- Sentence-Transformers (Local embedding generation)
+* 💬 **Interactive AI Chat**
+  Ask questions about your documents and get precise answers.
+
+* 📝 **Instant Summarization**
+  Generate concise summaries of large documents instantly.
+
+* 🎯 **Automated Quizzes**
+  Create multiple-choice quizzes from your study material.
+
+* 📈 **Study Dashboard**
+  Track progress, history, and performance with visual insights.
+
+* 🔐 **Secure Authentication**
+  JWT-based authentication with optional Google OAuth login.
 
 ---
 
-## 💻 Getting Started (Local Development)
+## 🛠️ Tech Stack
 
-You can run this project locally using either **Docker** (Recommended) or your native Node.js/Python environment.
+### Frontend
+
+* Next.js (React Framework)
+* Tailwind CSS
+* Framer Motion
+* Lucide Icons
+
+### Backend
+
+* FastAPI (Python)
+* MongoDB
+* FAISS (Vector Database)
+* LangChain & Groq (LLM orchestration)
+* Sentence-Transformers (Embeddings)
+
+---
+
+## 📁 Project Structure
+
+```
+ai-study-assistant/
+│
+├── frontend/        # Next.js frontend
+├── backend/         # FastAPI backend
+├── docker-compose.yml
+└── README.md
+```
+
+---
+
+## 🔐 Environment Variables
+
+Create a `.env` file inside the `backend/` folder:
+
+```
+GROQ_API_KEY=your_api_key_here
+MONGO_URI=your_mongodb_connection_string
+JWT_SECRET=your_secret_key
+```
+
+---
+
+## 💻 Getting Started
 
 ### Prerequisites
-- Obtain a free API key from [Groq Console](https://console.groq.com/) and place it in your `backend/.env` file.
 
-### Option A: Running with Docker (Recommended)
-The easiest way to run the app, including the database, is using Docker Compose.
+* Node.js
+* Python
+* MongoDB (local or Atlas)
+* Groq API Key
 
-1. Ensure **Docker Desktop** is installed and running.
-2. Run the following command in the root folder:
+---
+
+## 🐳 Option A: Run with Docker (Recommended)
+
 ```bash
 docker-compose up -d --build
 ```
-3. That's it! The application will be available at `http://localhost:3000`.
 
-### Option B: Running without Docker
-If you prefer running the services natively, you will need Node.js, Python, and a locally running instance of MongoDB.
+👉 Application will run at:
+Frontend: http://localhost:3000
+Backend: http://localhost:8000
 
-1. **Install all dependencies:**
+---
+
+## ⚙️ Option B: Run without Docker
+
+### Install dependencies
+
 ```bash
 npm run install:all
 ```
-2. **Start the development servers concurrently:**
+
+### Start development servers
+
 ```bash
 npm run dev
 ```
 
 ---
 
-## 🌍 Accessing the Application
-- **Frontend Dashboard:** [http://localhost:3000](http://localhost:3000)
-- **Backend API:** [http://localhost:8000](http://localhost:8000)
-- **Interactive API Docs:** [http://localhost:8000/docs](http://localhost:8000/docs)
+## 🌐 Access the Application
+
+* Frontend Dashboard: http://localhost:3000
+* Backend API: http://localhost:8000
+* API Docs (Swagger): http://localhost:8000/docs
+
+---
+
+## 📡 API Endpoints (Sample)
+
+* `POST /upload` → Upload PDF
+* `POST /chat` → Ask questions
+* `POST /quiz` → Generate quiz
+* `GET /history` → Fetch user activity
+
+---
+
+## 💡 Motivation
+
+Traditional studying is time-consuming and often inefficient. This project aims to improve learning efficiency by allowing users to interact directly with their study materials using AI.
+
+---
+
+## 🚀 Future Improvements
+
+* Voice-based interaction
+* Multi-language support
+* Mobile application
+* Advanced analytics dashboard
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome!
+Feel free to fork the repository and submit a pull request.
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License.
+
+---
+
+## 🙌 Acknowledgements
+
+* HuggingFace
+* LangChain
+* Groq
+* Open-source community
