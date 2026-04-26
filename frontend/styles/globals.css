@@ -1,0 +1,110 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 210 40% 98%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --primary: 221.2 83.2% 53.3%;
+    --primary-foreground: 210 40% 98%;
+    
+    --border: 214.3 31.8% 91.4%;
+  }
+
+  .dark {
+    --background: 222 47% 11%;    /* Standard Deep Slate Gray */
+    --foreground: 210 40% 98%;
+    --card: 222 47% 14%;
+    --card-border: 217 32% 17%;
+    --primary: 252 70% 60%;
+    --border: 217 32% 17%;
+  }
+
+  .midnight {
+    --background: 260 90% 4%;    /* Premium Midnight Purple-Black */
+    --foreground: 260 20% 98%;
+    --card: 260 70% 8%;
+    --card-border: 270 50% 15%;
+    --primary: 270 70% 60%;
+    --border: 270 50% 15%;
+  }
+}
+
+body {
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dashboard-panel {
+  @apply bg-white border-slate-100 dark:bg-slate-900/50 dark:border-slate-800 rounded-3xl shadow-sm;
+}
+
+.midnight .dashboard-panel {
+  @apply bg-midnightPanel border-slate-800 shadow-xl;
+}
+
+.midnight .bg-[#fafaff],
+.dark .bg-[#fafaff] {
+  background-color: hsl(var(--background)) !important;
+}
+
+.midnight .dashboard-panel {
+  @apply bg-midnightPanel border-slate-800 shadow-xl;
+}
+
+.midnight .bg-[#fafaff] {
+  @apply bg-midnight !important;
+}
+
+body {
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+.glass-panel {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1rem;
+}
+
+.dark .glass-panel {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.dashboard-panel {
+  @apply bg-white border border-slate-100 dark:bg-midnightPanel dark:border-slate-800 rounded-2xl shadow-sm;
+}
+
+/* Custom scrollbar for webkit */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,0.1);
+  border-radius: 4px;
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.15);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0,0,0,0.2);
+}
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: rgba(255,255,255,0.25);
+}
