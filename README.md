@@ -64,6 +64,19 @@ ai-study-assistant/
 └── README.md
 ---
 
+## 🌐 Database Setup (MongoDB Atlas)
+
+To deploy this application to production, you need a cloud-hosted MongoDB instance. We recommend using **MongoDB Atlas**.
+
+1.  **Create an Account**: Sign up at [MongoDB Atlas](https://www.mongodb.com/cloud/atlas/register).
+2.  **Deploy a Free Cluster**: Choose the **M0 (Free)** tier.
+3.  **Network Access**: In the "Network Access" tab, click "Add IP Address" and select **Allow Access from Anywhere (0.0.0.0/0)**. This is necessary for cloud providers like Render.
+4.  **Database Access**: Create a database user with a username and password. Save these credentials!
+5.  **Get Connection String**: Click "Connect" -> "Drivers" and copy the connection string. It should look like:
+    `mongodb+srv://<username>:<password>@cluster0.xxxxx.mongodb.net/?retryWrites=true&w=majority`
+
+---
+
 ## 💻 Getting Started
 
 ### Prerequisites

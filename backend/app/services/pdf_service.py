@@ -8,7 +8,7 @@ import logging
 from typing import List
 
 from pypdf import PdfReader
-from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 from app.core.config import settings
 
