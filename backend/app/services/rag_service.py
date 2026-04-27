@@ -6,14 +6,14 @@
 #   - Loading the index back on startup or on demand
 #   - Similarity search for relevant context chunks
 #
-# Embeddings are generated locally using HuggingFace sentence-transformers
-# (all-MiniLM-L6-v2) — completely free, no API key required.
+# Embeddings are generated locally using fastembed
+# (all-MiniLM-L6-v2) — completely free, no API key required, and very low memory footprint.
 
 import os
 import logging
 from typing import List, Optional
 
-from langchain_huggingface import HuggingFaceEmbeddings
+from langchain_community.embeddings.fastembed import FastEmbedEmbeddings
 from langchain_community.vectorstores import FAISS
 
 from app.core.config import settings
@@ -24,21 +24,25 @@ logger = logging.getLogger(__name__)
 _vector_store: Optional[FAISS] = None
 
 # Embedding model cache (loading takes ~2s the first time; reuse after that)
-_embeddings: Optional[HuggingFaceEmbeddings] = None
+_embeddings: Optional[FastEmbedEmbeddings] = None
 
 
-def _get_embeddings() -> HuggingFaceEmbeddings:
+def _get_embeddings() -> FastEmbedEmbeddings:
     """
-    Return a cached HuggingFace embeddings instance.
-    The model is downloaded once and cached locally by sentence-transformers.
+    Return a cached FastEmbed embeddings instance.
+    The model is downloaded once and cached locally.
     """
     global _embeddings
     if _embeddings is None:
-        logger.info("Loading HuggingFace embedding model: %s", settings.EMBEDDING_MODEL)
-        _embeddings = HuggingFaceEmbeddings(
-            model_name=settings.EMBEDDING_MODEL,
-            model_kwargs={"device": "cpu"},
-            encode_kwargs={"normalize_embeddings": True},
+        # Convert sentence-transformers model name to fastembed model name if needed
+        model_name = settings.EMBEDDING_MODEL
+        if model_name == "all-MiniLM-L6-v2":
+            model_name = "sentence-transformers/all-MiniLM-L6-v2"
+            
+        logger.info("Loading FastEmbed embedding model: %s", model_name)
+        _embeddings = FastEmbedEmbeddings(
+            model_name=model_name,
+            # CPU is default for fastembed
         )
     return _embeddings
 
