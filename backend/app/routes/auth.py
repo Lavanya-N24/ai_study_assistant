@@ -64,6 +64,7 @@ async def register(data: RegisterRequest):
 
 
 # ── Login ─────────────────────────────────────────────────────────────────────
+from app.core.config import settings
 
 @router.post(
     "/login",
@@ -78,7 +79,9 @@ async def login(data: LoginRequest):
     """
     user = db.users.find_one({"email": data.email})
 
-    if not user or not verify_password(data.password, user["password"]):
+    # BUG FIX: Handle users created via Google OAuth who don't have a 'password' field.
+    # Without this check, accessing user["password"] would raise a KeyError (500 error).
+    if not user or "password" not in user or not verify_password(data.password, user["password"]):
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Invalid email or password.",
@@ -105,9 +108,9 @@ async def google_login(data: GoogleAuthRequest):
     """
     try:
         # Verify the token
-        client_id = os.environ.get("GOOGLE_CLIENT_ID")
+        client_id = settings.GOOGLE_CLIENT_ID
         if not client_id:
-            logger.error("GOOGLE_CLIENT_ID is not set in environment variables.")
+            logger.error("GOOGLE_CLIENT_ID is not set in settings.")
             raise HTTPException(status_code=500, detail="Server misconfiguration.")
             
         idinfo = id_token.verify_oauth2_token(data.token, requests.Request(), client_id)

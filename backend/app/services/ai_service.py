@@ -152,13 +152,15 @@ async def generate_quiz(context_chunks: List[str]) -> List[QuizQuestion]:
     logger.info("Generating quiz questions via Groq…")
     raw_json = await _chat_completion(system_prompt, user_prompt, temperature=0.5)
 
-    # Strip possible markdown code fences the model might add
+    # ── Robust JSON Extraction ───────────────────────────────────────────────
+    # The model might return text before/after the JSON. We find the first '[' 
+    # and last ']' to extract the pure JSON array.
     raw_json = raw_json.strip()
-    if raw_json.startswith("```"):
-        raw_json = raw_json.split("```")[1]           # remove opening fence + language
-        if raw_json.lower().startswith("json"):
-            raw_json = raw_json[4:]                   # strip "json" language tag
-    raw_json = raw_json.removesuffix("```").strip()
+    start_idx = raw_json.find("[")
+    end_idx = raw_json.rfind("]")
+    
+    if start_idx != -1 and end_idx != -1:
+        raw_json = raw_json[start_idx : end_idx + 1]
 
     try:
         data = json.loads(raw_json)

@@ -38,6 +38,9 @@ class Settings:
     JWT_SECRET: str = os.getenv("JWT_SECRET", "super-secret-change-me-in-production")
     JWT_ALGORITHM: str = "HS256"
 
+    # Google OAuth
+    GOOGLE_CLIENT_ID: str = os.getenv("GOOGLE_CLIENT_ID", "")
+
     def validate(self) -> None:
         """Raise a clear error early if critical settings are missing."""
         if not self.GROQ_API_KEY:
@@ -45,6 +48,14 @@ class Settings:
                 "GROQ_API_KEY is not set. "
                 "Get a free key at https://console.groq.com and add it to your .env file."
             )
+        
+        if not self.MONGO_URI:
+            raise EnvironmentError("MONGO_URI is not set in your .env file.")
+        
+        if not self.GOOGLE_CLIENT_ID:
+            # We don't crash the whole app if Google is missing, but we log it
+            import logging
+            logging.getLogger(__name__).warning("GOOGLE_CLIENT_ID is not set. Google Login will not work.")
 
 
 # Single shared instance – import this everywhere
